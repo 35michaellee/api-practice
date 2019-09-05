@@ -13,17 +13,18 @@ function getParks(){
     let limit=$('#numberofresults').val();
     
     let stateinput=$('#input').val();
-    let states= stateinput.split(" ");
+    let states= stateinput.split(",");
     for(let i=0;i<states.length;i++){
+        console.log(states[i])
         if(i==0){
         var statestring=`stateCode=${states[i]}`;}
         else{
-            statestring=statestring+`&stateCode=${states[i]}`;}
+            statestring=statestring+`,${states[i]}`;}
 
     }
     
     
-    let url=`${baseurl}parks?stateCode=${statestring}&limit=${limit}&api_key=${apikey}`;
+    let url=`${baseurl}parks?${statestring}&limit=${limit}&api_key=${apikey}`;
     
     console.log(url);
     fetch(url)
